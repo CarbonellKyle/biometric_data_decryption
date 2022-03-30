@@ -41,10 +41,27 @@
         </div>
 
         @isset($days)
-            <h4 class="mt-4">Showing results from employe #<strong>{{Request::input('id')}}</strong> on <strong>{{date('F', strtotime($days[1]['date']))}}</strong></h4>
+            <!--<h4 class="mt-4">Showing results from employe #<strong>{{Request::input('id')}}</strong> on <strong>{{date('F', strtotime($days[1]['date']))}}</strong></h4>
+            -->
 
-            <div class="col-12 d-flex">
+            <div class="col-12 d-flex mt-4">
                 <div class="container col-6 table-responsive mt-2">
+                    <div><strong>
+                        <h3 class="text-center">DepEd-Gingoog</h3>
+                        <h6 class="text-center" style="margin-top: -10px">DAILY TIME RECORD</h6>
+                        <p class="text-center" style="margin-top: -10px">From: {{ date('m/d/y', strtotime($days[1]['date'])) }} To: {{ date('m/d/y', strtotime($days[count($days)]['date'])) }}</p>
+
+                        <div>
+                            <p>Name:</p>
+                            <p style="margin-top: -15px">Position:</p>
+                            <p style="margin-top: -15px">Department:</p>
+                            <div class="d-flex" style="margin-top: -15px">
+                                <p class="col-4">Regular Time: Regular</p>
+                                <p class="col-4 offset-4">Payroll No.: {{Request::input('id')}}</p>
+                            </div>
+                        </strong></div>
+                    </div>
+
                     <table class="table table-bordered">
                         <thead class=" text-info">
                             <th class="text-center" colspan="2">
@@ -119,6 +136,21 @@
                     </table>
                 </div>
                 <div class="container col-6 table-responsive mt-2">
+                    <div><strong>
+                        <h3 class="text-center">DepEd-Gingoog</h3>
+                        <h6 class="text-center" style="margin-top: -10px">DAILY TIME RECORD</h6>
+                        <p class="text-center" style="margin-top: -10px">From: {{ date('m/d/y', strtotime($days[1]['date'])) }} To: {{ date('m/d/y', strtotime($days[count($days)]['date'])) }}</p>
+
+                        <div>
+                            <p>Name:</p>
+                            <p style="margin-top: -15px">Position:</p>
+                            <p style="margin-top: -15px">Department:</p>
+                            <div class="d-flex" style="margin-top: -15px">
+                                <p class="col-4">Regular Time: Regular</p>
+                                <p class="col-4 offset-4">Payroll No.: {{Request::input('id')}}</p>
+                            </div>
+                        </strong></div>
+                    </div>
                     <table class="table table-bordered">
                         <thead class=" text-info">
                             <th class="text-center" colspan="2">
