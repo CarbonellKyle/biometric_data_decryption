@@ -44,7 +44,7 @@ class DTRController extends Controller
         $filename = $request->filename;
 
         //Getting and opening dat file
-        $file = fopen(public_path('\uploads\dat' . '\\' . $filename), 'r');
+        $file = fopen(public_path('uploads/dat' . '/' . $filename), 'r');
 
         //Storing each line of dat file to an array
         while(!feof($file)) {
