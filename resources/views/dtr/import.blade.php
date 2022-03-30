@@ -33,7 +33,8 @@
             <div class="alert alert-success mt-4" role="alert">
                 {{ session('file_uploaded') . ' has been uploaded. You can now import its data!' }}
             </div>
-            <form action="{{ route('import') }}" method="GET">
+            <form action="{{ route('import') }}" method="POST">
+                @csrf
                 <input type="hidden" name="filename" value="{{ session('file_uploaded') }}">
                 <button class="btn btn-success w-100 mt-4">Import Data</button>
             </form>

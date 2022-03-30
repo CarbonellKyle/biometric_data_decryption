@@ -25,5 +25,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/dtr', [DTRController::class, 'index'])->name('index');
 Route::get('/upload', [DTRController::class, 'upload'])->name('upload');
 Route::post('/uploadSubmit', [DTRController::class, 'uploadSubmit'])->name('uploadSubmit');
-Route::get('/import', [DTRController::class, 'import'])->name('import');
+Route::post('/import', [DTRController::class, 'import'])->name('import');
 Route::get('/dtr/get', [DTRController::class, 'getDTR'])->name('getDTR');
