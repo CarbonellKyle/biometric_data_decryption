@@ -2,17 +2,18 @@
 
 @section('content')
 <div class="container">
-    <div class="col-8 offset-2 my-2">
+    <div class="col-12my-2">
         <h1 class="text-center">Biometric Data Decyption</h1>
 
-        <a class="btn btn-primary mt-4" href="{{ route('upload') }}">
+        <a class="btn btn-primary mt-4 offset-2" href="{{ route('upload') }}">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
                 <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
                 <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
             </svg> Import
         </a>
+    </div>
 
-        <div class="col-6 offset-6">
+        <div class="col-4 offset-7">
             <form method="GET" action="{{ route('getDTR') }}">
                 <div class="d-flex">
                     <input type="number" name="id" class="form-control" placeholder="Enter Employee ID" value="{{Request::input('id')}}" required>
@@ -42,79 +43,155 @@
         @isset($days)
             <h4 class="mt-4">Showing results from employe #<strong>{{Request::input('id')}}</strong> on <strong>{{date('F', strtotime($days[1]['date']))}}</strong></h4>
 
-            <div class="table-responsive mt-2">
-                <table class="table table-bordered">
-                    <thead class=" text-info">
-                        <th class="text-center" colspan="2">
-                            WORKING
-                        </th>
-                        <th class="text-center" colspan="2">
-                            AM
-                        </th>
-                        <th class="text-center" colspan="2">
-                            PM
-                        </th>
-                        <th class="text-center" colspan="2">
-                            HOURS
-                        </th>
-                    </thead>
-                    <thead class=" text-info">
-                        <th class="text-center">
-                            Date
-                        </th>
-                        <th class="text-center">
-                            Days
-                        </th>
-                        <th class="text-center">
-                            In 1
-                        </th>
-                        <th class="text-center">
-                            Out 1
-                        </th>
-                        <th class="text-center">
-                            In 2
-                        </th>
-                        <th class="text-center">
-                            Out 2
-                        </th>
-                        <th class="text-center">
-                            UT
-                        </th>
-                        <th class="text-center">
-                            OT
-                        </th>
-                    </thead>
-                    <tbody>
-                    @foreach ($days as $day)
-                        <tr>
-                            <td class="text-center">
-                                {{ date('d - M', strtotime($day['date'])) }}
-                            </td>
-                            <td class="text-center">
-                                {{ date('D', strtotime($day['date'])) }}
-                            </td>
-                            <td class="text-center">
-                                {{ $day['in1']!=null ? date('h:i a', strtotime($day['in1'])) : ' '}}
-                            </td>
-                            <td class="text-center">
-                                {{ $day['out1']!=null ? date('h:i a', strtotime($day['out1'])) : ' '}}
-                            </td>
-                            <td class="text-center">
-                                {{ $day['in2']!=null ? date('h:i a', strtotime($day['in2'])) : ' '}}  
-                            </td>
-                            <td class="text-center">
-                                {{ $day['out2']!=null ? date('h:i a', strtotime($day['out2'])) : ' '}}
-                            </td>
-                            <td class="text-center">
-                                --
-                            </td>
-                            <td class="text-center">
-                                --
-                            </td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
+            <div class="col-12 d-flex">
+                <div class="container col-6 table-responsive mt-2">
+                    <table class="table table-bordered">
+                        <thead class=" text-info">
+                            <th class="text-center" colspan="2">
+                                WORKING
+                            </th>
+                            <th class="text-center" colspan="2">
+                                AM
+                            </th>
+                            <th class="text-center" colspan="2">
+                                PM
+                            </th>
+                            <th class="text-center" colspan="2">
+                                HOURS
+                            </th>
+                        </thead>
+                        <thead class=" text-info">
+                            <th class="text-center">
+                                Date
+                            </th>
+                            <th class="text-center">
+                                Days
+                            </th>
+                            <th class="text-center">
+                                In 1
+                            </th>
+                            <th class="text-center">
+                                Out 1
+                            </th>
+                            <th class="text-center">
+                                In 2
+                            </th>
+                            <th class="text-center">
+                                Out 2
+                            </th>
+                            <th class="text-center">
+                                UT
+                            </th>
+                            <th class="text-center">
+                                OT
+                            </th>
+                        </thead>
+                        <tbody>
+                        @foreach ($days as $day)
+                            <tr>
+                                <td class="text-center">
+                                    {{ date('d - M', strtotime($day['date'])) }}
+                                </td>
+                                <td class="text-center">
+                                    {{ date('D', strtotime($day['date'])) }}
+                                </td>
+                                <td class="text-center">
+                                    {{ $day['in1']!=null ? date('h:i a', strtotime($day['in1'])) : ' '}}
+                                </td>
+                                <td class="text-center">
+                                    {{ $day['out1']!=null ? date('h:i a', strtotime($day['out1'])) : ' '}}
+                                </td>
+                                <td class="text-center">
+                                    {{ $day['in2']!=null ? date('h:i a', strtotime($day['in2'])) : ' '}}  
+                                </td>
+                                <td class="text-center">
+                                    {{ $day['out2']!=null ? date('h:i a', strtotime($day['out2'])) : ' '}}
+                                </td>
+                                <td class="text-center">
+                                    --
+                                </td>
+                                <td class="text-center">
+                                    --
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <div class="container col-6 table-responsive mt-2">
+                    <table class="table table-bordered">
+                        <thead class=" text-info">
+                            <th class="text-center" colspan="2">
+                                WORKING
+                            </th>
+                            <th class="text-center" colspan="2">
+                                AM
+                            </th>
+                            <th class="text-center" colspan="2">
+                                PM
+                            </th>
+                            <th class="text-center" colspan="2">
+                                HOURS
+                            </th>
+                        </thead>
+                        <thead class=" text-info">
+                            <th class="text-center">
+                                Date
+                            </th>
+                            <th class="text-center">
+                                Days
+                            </th>
+                            <th class="text-center">
+                                In 1
+                            </th>
+                            <th class="text-center">
+                                Out 1
+                            </th>
+                            <th class="text-center">
+                                In 2
+                            </th>
+                            <th class="text-center">
+                                Out 2
+                            </th>
+                            <th class="text-center">
+                                UT
+                            </th>
+                            <th class="text-center">
+                                OT
+                            </th>
+                        </thead>
+                        <tbody>
+                        @foreach ($days as $day)
+                            <tr>
+                                <td class="text-center">
+                                    {{ date('d - M', strtotime($day['date'])) }}
+                                </td>
+                                <td class="text-center">
+                                    {{ date('D', strtotime($day['date'])) }}
+                                </td>
+                                <td class="text-center">
+                                    {{ $day['in1']!=null ? date('h:i a', strtotime($day['in1'])) : ' '}}
+                                </td>
+                                <td class="text-center">
+                                    {{ $day['out1']!=null ? date('h:i a', strtotime($day['out1'])) : ' '}}
+                                </td>
+                                <td class="text-center">
+                                    {{ $day['in2']!=null ? date('h:i a', strtotime($day['in2'])) : ' '}}  
+                                </td>
+                                <td class="text-center">
+                                    {{ $day['out2']!=null ? date('h:i a', strtotime($day['out2'])) : ' '}}
+                                </td>
+                                <td class="text-center">
+                                    --
+                                </td>
+                                <td class="text-center">
+                                    --
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             @else

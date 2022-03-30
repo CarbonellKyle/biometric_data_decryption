@@ -33,9 +33,13 @@
             <div class="alert alert-success mt-4" role="alert">
                 {{ session('file_uploaded') . ' has been uploaded. You can now import its data!' }}
             </div>
-            <form action="{{ route('import') }}" method="POST">
+            <form action="{{ route('import') }}" method="POST" id="importForm">
                 @csrf
                 <input type="hidden" name="filename" value="{{ session('file_uploaded') }}">
+                <div class="progress">
+                    <div class="bar"></div>
+                    <div class="percent">0%</div>
+                </div>
                 <button class="btn btn-success w-100 mt-4">Import Data</button>
             </form>
         @endif
@@ -43,3 +47,44 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+    <script src="https://malsup.github.com/jquery.form.js"></script>
+    
+    <script type="text/javascript">
+
+        (function() {
+            var bar = $('.bar');
+            var percent = $('.percent');
+            var status = $('#status');
+
+            $('form').ajaxForm({
+                beforeSubmit: validate,
+                beforeSend: function() {
+                    status.empty();
+                    var percentVal = 0%;
+                    var filenameValue = $('input[name=filename]').fieldValue();
+                    bar.width(percentVal);
+                    percent.html(percentVal);
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%';
+                    bar.width(percentVal);
+                    percent.html(percentVal);
+                },
+                success: function() {
+                    var percentVal = 'Importing';
+                    bar.width(percentVal);
+                    percent.html(percentVal);
+                },
+                complete: function(xhr) {
+                    status.html(xhr.responseText);
+                    alert('Imported Successfully');
+                    //window.location.href="/upload";
+                }
+            });
+        })();
+
+    </script>
+@endpush
