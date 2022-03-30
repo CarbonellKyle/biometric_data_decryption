@@ -35,11 +35,13 @@ class DTRController extends Controller
         return back()->with('file_uploaded', $fileOriginalName);
     }
 
-    public function import($filename)
+    public function import(Request $request)
     {
         //Max execution time is set to 5mins
         $seconds = 360;
         ini_set('max_execution_time', $seconds);
+
+        $filename = $request->filename;
 
         //Getting and opening dat file
         $file = fopen(public_path('\uploads\dat' . '\\' . $filename), 'r');

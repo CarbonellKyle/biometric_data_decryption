@@ -11,12 +11,6 @@
             </svg> Back
         </a>
 
-        @if(Session::has('file_uploaded'))
-            <div class="alert alert-success mt-4" role="alert">
-                {{ session('file_uploaded') . ' has been uploaded. You can now import its data!' }}
-            </div>
-        @endif
-
         @if(Session::has('data_imported'))
             <div class="alert alert-success mt-4" role="alert">
                 {{Session::get('data_imported')}}
@@ -36,7 +30,13 @@
         </form>
 
         @if(Session::has('file_uploaded'))
-            <a class="btn btn-success w-100 mt-4" href="/import/{{ session('file_uploaded') }}">Import Data</a>
+            <div class="alert alert-success mt-4" role="alert">
+                {{ session('file_uploaded') . ' has been uploaded. You can now import its data!' }}
+            </div>
+            <form action="{{ route('import') }}" method="GET">
+                <input type="hidden" name="filename" value="{{ session('file_uploaded') }}">
+                <button class="btn btn-success w-100 mt-4">Import Data</button>
+            </form>
         @endif
 
     </div>
