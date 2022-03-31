@@ -73,7 +73,7 @@ class DTRController extends Controller
         $now = Carbon::now(); //current date
         $month = $request->month; //month selected by user
         $current_month = $month; //for default value on dropdown
-        $noOfDays = Carbon::now()->month($month)->daysInMonth; //number of days of selected month
+        $noOfDays = Carbon::createFromDate($now->year, $month, 1)->daysInMonth; //number of days of selected month
 
         //Creating an array for days on month selected
         for($i=1; $i<$noOfDays+1; $i++){
