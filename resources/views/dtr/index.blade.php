@@ -46,7 +46,7 @@
 
             <div class="col-12 d-flex mt-4">
                 <div class="container col-6 table-responsive mt-2">
-                    <div><strong>
+                    <div class="container">
                         <h3 class="text-center">DepEd-Gingoog</h3>
                         <h6 class="text-center" style="margin-top: -10px">DAILY TIME RECORD</h6>
                         <p class="text-center" style="margin-top: -10px">From: {{ date('m/d/y', strtotime($days[1]['date'])) }} To: {{ date('m/d/y', strtotime($days[count($days)]['date'])) }}</p>
@@ -57,9 +57,9 @@
                             <p style="margin-top: -15px">Department:</p>
                             <div class="d-flex" style="margin-top: -15px">
                                 <p class="col-4">Regular Time: Regular</p>
-                                <p class="col-4 offset-4">Payroll No.: {{Request::input('id')}}</p>
+                                <p class="col-4 offset-4">Payroll No.: <u> {{Request::input('id')}} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
                             </div>
-                        </strong></div>
+                        </div>
                     </div>
 
                     <table class="table table-bordered">
@@ -125,18 +125,37 @@
                                     {{ $day['out2']!=null ? date('h:i a', strtotime($day['out2'])) : ' '}}
                                 </td>
                                 <td class="text-center">
-                                    --
+                                    
                                 </td>
                                 <td class="text-center">
-                                    --
+                                    
                                 </td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
+                    <div class="container" style="margin-top: -10px;">
+                        <div class="d-flex">
+                            <p class="col-4">A = <u>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
+                            <p class="col-4">ROT = <u>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
+                            <p class="col-4">LOT = <u>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
+                        </div>
+                        <div class="d-flex" style="margin-top: -15px">
+                            <p class="col-4">U = <u>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
+                            <p class="col-4">SOT = <u>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
+                        </div>
+                        <p class="text-center" style="margin-bottom: 35px">I Certify on my honor that the above is a true and correct report<br> of the hours work performed, record of which was daily at<br> the time of arrival and departure from office.</p>
+                        <hr>
+                        <p class="text-center" style="margin-top: -15px">Signature</p>
+                    </div>
+                    <p class="text-center" style="margin-top: -10px">==============================================================</p>
+                    <p class="text-center mb-4" style="margin-top: -15px">VERIFIED as to the prescribed office hours</p>
+                    <hr>
+                    <p class="text-center" style="margin-top: -15px">Incharge</p>
+                    <p style="margin-top: -15px">>>>>>EMPLOYEE'S COPY</p>
                 </div>
                 <div class="container col-6 table-responsive mt-2">
-                    <div><strong>
+                    <div class="container">
                         <h3 class="text-center">DepEd-Gingoog</h3>
                         <h6 class="text-center" style="margin-top: -10px">DAILY TIME RECORD</h6>
                         <p class="text-center" style="margin-top: -10px">From: {{ date('m/d/y', strtotime($days[1]['date'])) }} To: {{ date('m/d/y', strtotime($days[count($days)]['date'])) }}</p>
@@ -147,9 +166,9 @@
                             <p style="margin-top: -15px">Department:</p>
                             <div class="d-flex" style="margin-top: -15px">
                                 <p class="col-4">Regular Time: Regular</p>
-                                <p class="col-4 offset-4">Payroll No.: {{Request::input('id')}}</p>
+                                <p class="col-4 offset-4">Payroll No.: <u> {{Request::input('id')}} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
                             </div>
-                        </strong></div>
+                        </div>
                     </div>
                     <table class="table table-bordered">
                         <thead class=" text-info">
@@ -214,15 +233,36 @@
                                     {{ $day['out2']!=null ? date('h:i a', strtotime($day['out2'])) : ' '}}
                                 </td>
                                 <td class="text-center">
-                                    --
+                                    
                                 </td>
                                 <td class="text-center">
-                                    --
+                                    
                                 </td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
+                    <div class="container" style="margin-top: -10px;">
+                        <div class="d-flex">
+                            <p class="col-4">A = <u>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
+                            <p class="col-4">ROT = <u>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
+                            <p class="col-4">LOT = <u>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
+                        </div>
+                        <div class="d-flex" style="margin-top: -15px">
+                            <p class="col-4">U = <u>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
+                            <p class="col-4">SOT = <u>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
+                        </div>
+                        <p class="text-center" style="margin-bottom: 35px">I Certify on my honor that the above is a true and correct report<br> of the hours work performed, record of which was daily at<br> the time of arrival and departure from office.</p>
+                        <hr>
+                        <p class="text-center" style="margin-top: -15px">Signature</p>
+                    </div>
+                    <p class="text-center" style="margin-top: -10px">==============================================================</p>
+                    <p class="text-center mb-4" style="margin-top: -15px">VERIFIED as to the prescribed office hours</p>
+                    <hr>
+                    <p class="text-center" style="margin-top: -15px">Incharge</p>
+                    <p style="margin-top: -15px">>>>>>PERSONNEL'S COPY</p>
+                    <p style="margin-top: -15px">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp RECORDED BY: <u>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
+                    <p style="margin-top: -15px">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp DATE  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp : <u>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
                 </div>
             </div>
 
