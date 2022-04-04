@@ -1,6 +1,40 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    .print-container table {
+            border-collapse: collapse;
+        }
+
+        .print-container table th {
+            padding: 3px 0 3px 0;
+        }
+
+        .print-container table tr, .print-container table td {
+            padding: 0;
+        }
+
+    @media print {
+        /* Hide every other element */
+        body * {
+            visibility: hidden;
+        }
+
+        /* Then displaying print container elements */
+        .print-container, .print-container * {
+            visibility: visible;
+        }
+
+        /* Adjusting the position to always start from top-left */
+        .print-container {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            font-size: 10px;
+        }
+    }
+</style>
+
 <div class="container">
     <div class="col-12my-2">
         <h1 class="text-center">Biometric Data Decyption</h1>
@@ -44,7 +78,16 @@
             <!--<h4 class="mt-4">Showing results from employe #<strong>{{Request::input('id')}}</strong> on <strong>{{date('F', strtotime($days[1]['date']))}}</strong></h4>
             -->
 
-            <div class="col-12 d-flex mt-4">
+            <div class="col-12">
+                <button onclick="window.print();" class="btn btn-primary col-1 offset-10 mt-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer-fill" viewBox="0 0 16 16">
+                    <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5zm6 8H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z"/>
+                    <path d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+                    </svg> Print
+                </button>
+            </div>
+            
+            <div class="col-12 d-flex mt-4 print-container">
                 <div class="container col-6 table-responsive mt-2">
                     <div class="container">
                         <h3 class="text-center">DepEd-Gingoog</h3>
@@ -53,16 +96,16 @@
 
                         <div>
                             <p>Name:</p>
-                            <p style="margin-top: -15px">Position:</p>
-                            <p style="margin-top: -15px">Department:</p>
-                            <div class="d-flex" style="margin-top: -15px">
+                            <p style="margin-top: -20px">Position:</p>
+                            <p style="margin-top: -20px">Department:</p>
+                            <div class="d-flex" style="margin-top: -20px">
                                 <p class="col-4">Regular Time: Regular</p>
-                                <p class="col-4 offset-4">Payroll No.: <u> {{Request::input('id')}} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
+                                <p class="col-4 offset-4">Payroll No.: <u> {{Request::input('id')}} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
                             </div>
                         </div>
                     </div>
 
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" style="margin-top: -10px">
                         <thead class=" text-info">
                             <th class="text-center" colspan="2">
                                 WORKING
@@ -134,25 +177,31 @@
                         @endforeach
                         </tbody>
                     </table>
-                    <div class="container" style="margin-top: -10px;">
+                    <div class="container" style="margin-top: -15px;">
                         <div class="d-flex">
                             <p class="col-4">A = <u>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
                             <p class="col-4">ROT = <u>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
                             <p class="col-4">LOT = <u>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
                         </div>
-                        <div class="d-flex" style="margin-top: -15px">
+                        <div class="d-flex" style="margin-top: -20px">
                             <p class="col-4">U = <u>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
                             <p class="col-4">SOT = <u>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
                         </div>
-                        <p class="text-center" style="margin-bottom: 35px">I Certify on my honor that the above is a true and correct report<br> of the hours work performed, record of which was daily at<br> the time of arrival and departure from office.</p>
-                        <hr>
-                        <p class="text-center" style="margin-top: -15px">Signature</p>
+                        <div class="text-center" style="margin-top: -10px">
+                            <p>I Certify on my honor that the above is a true and correct report</p>
+                            <p style="margin-top: -20px">of the hours work performed, record of which was daily at</p>
+                            <p style="margin-top: -20px">the time of arrival and departure from office.</p>
+                            <p style="margin-top: -10px"><u>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
+                            <p class="text-center" style="margin-top: -20px">Signature</p>
+                        </div>
                     </div>
-                    <p class="text-center" style="margin-top: -10px">==============================================================</p>
-                    <p class="text-center mb-4" style="margin-top: -15px">VERIFIED as to the prescribed office hours</p>
-                    <hr>
-                    <p class="text-center" style="margin-top: -15px">Incharge</p>
-                    <p style="margin-top: -15px">>>>>>EMPLOYEE'S COPY</p>
+                    <div class="text-center">
+                        <p style="margin-top: -15px">==============================================================</p>
+                        <p style="margin-top: -20px">VERIFIED as to the prescribed office hours</p>
+                        <p style="margin-top: -10px"><u>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
+                        <p style="margin-top: -20px">Incharge</p>
+                    </div>
+                    <p style="margin-top: -20px">>>>>>EMPLOYEE'S COPY</p>
                 </div>
                 <div class="container col-6 table-responsive mt-2">
                     <div class="container">
@@ -162,15 +211,15 @@
 
                         <div>
                             <p>Name:</p>
-                            <p style="margin-top: -15px">Position:</p>
-                            <p style="margin-top: -15px">Department:</p>
-                            <div class="d-flex" style="margin-top: -15px">
+                            <p style="margin-top: -20px">Position:</p>
+                            <p style="margin-top: -20px">Department:</p>
+                            <div class="d-flex" style="margin-top: -20px">
                                 <p class="col-4">Regular Time: Regular</p>
-                                <p class="col-4 offset-4">Payroll No.: <u> {{Request::input('id')}} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
+                                <p class="col-4 offset-4">Payroll No.: <u> {{Request::input('id')}} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
                             </div>
                         </div>
                     </div>
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" style="margin-top: -10px">
                         <thead class=" text-info">
                             <th class="text-center" colspan="2">
                                 WORKING
@@ -242,27 +291,33 @@
                         @endforeach
                         </tbody>
                     </table>
-                    <div class="container" style="margin-top: -10px;">
+                    <div class="container" style="margin-top: -15px;">
                         <div class="d-flex">
                             <p class="col-4">A = <u>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
                             <p class="col-4">ROT = <u>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
                             <p class="col-4">LOT = <u>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
                         </div>
-                        <div class="d-flex" style="margin-top: -15px">
+                        <div class="d-flex" style="margin-top: -20px">
                             <p class="col-4">U = <u>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
                             <p class="col-4">SOT = <u>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
                         </div>
-                        <p class="text-center" style="margin-bottom: 35px">I Certify on my honor that the above is a true and correct report<br> of the hours work performed, record of which was daily at<br> the time of arrival and departure from office.</p>
-                        <hr>
-                        <p class="text-center" style="margin-top: -15px">Signature</p>
+                        <div class="text-center" style="margin-top: -10px">
+                            <p>I Certify on my honor that the above is a true and correct report</p>
+                            <p style="margin-top: -20px">of the hours work performed, record of which was daily at</p>
+                            <p style="margin-top: -20px">the time of arrival and departure from office.</p>
+                            <p style="margin-top: -10px"><u>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
+                            <p class="text-center" style="margin-top: -20px">Signature</p>
+                        </div>
                     </div>
-                    <p class="text-center" style="margin-top: -10px">==============================================================</p>
-                    <p class="text-center mb-4" style="margin-top: -15px">VERIFIED as to the prescribed office hours</p>
-                    <hr>
-                    <p class="text-center" style="margin-top: -15px">Incharge</p>
-                    <p style="margin-top: -15px">>>>>>PERSONNEL'S COPY</p>
-                    <p style="margin-top: -15px">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp RECORDED BY: <u>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
-                    <p style="margin-top: -15px">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp DATE  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp : <u>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
+                    <div class="text-center">
+                        <p style="margin-top: -15px">==============================================================</p>
+                        <p style="margin-top: -20px">VERIFIED as to the prescribed office hours</p>
+                        <p style="margin-top: -10px"><u>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
+                        <p style="margin-top: -20px">Incharge</p>
+                    </div>
+                    <p style="margin-top: -20px">>>>>>PERSONNEL'S COPY</p>
+                    <p style="margin-top: -20px">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp RECORDED BY: <u>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
+                    <p style="margin-top: -20px">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp DATE  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp : <u>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</u></p>
                 </div>
             </div>
 
